@@ -11,8 +11,9 @@
   <body class="container">
     <h1>Friends</h1>
     <ul id="people" class=""></ul>
-
+    <h3 id="temperature"></h3>
     <button id="button">GET Friends List</button>
+    <button id="button2">Get Weather</button>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -32,6 +33,23 @@
               '<li class="text-danger">' + err.message + "</li>";
           });
       };
+      
+      document.getElementById("button2").onclick = function () {
+        axios
+          .get("http://localhost:4000/weather/cold")
+          .then( function(response) {
+            const data = response.data;
+            document.getElementById("temperature").innerHTML = data
+            // window.open("http://localhost:4000/weather/hot")
+
+          })
+          // .join("")
+          .catch( (err) => {console.log(err)
+
+          });
+      };
+
+
     </script>
   </body>
 </html>
